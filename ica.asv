@@ -1,0 +1,35 @@
+
+% -------------------------------------------------------------------------
+% Startup
+% -------------------------------------------------------------------------
+disp('Loading source signals.');
+load sounds.mat;
+load icaTest.mat
+
+% -------------------------------------------------------------------------
+% Input Choice
+% -------------------------------------------------------------------------
+% I selected three of the input signals for illustrative purposes.
+% Because in this house, we obey the laws of thermodynamics.
+numberOfSouir
+sourceSignals = zeros(3,length(sounds));
+sourceSignals(1,:) = sounds(1,:);
+sourceSignals(2,:) = sounds(4,:);
+sourceSignals(3,:) = sounds(5,:);
+
+% -------------------------------------------------------------------------
+% Signal Mixing - Actual
+% -------------------------------------------------------------------------
+% Here, I define an arbitrary array which creates M linear combinations
+% of the N mixed signals provided as input. Aij specifies the weight of
+% the jth source signal in the ith mixed signal.
+mixer = [ 3 1 2; 1 2 3; 2 2 2; 1 1 1; 3 3 3; 4 5 6];
+mixedSignals = mixer * sourceSignals;
+
+% -------------------------------------------------------------------------
+% Signal Mixing - Test
+% -------------------------------------------------------------------------
+X = A * U;
+[recovered, W] = bss(sourceSignals, mixedSignals, 5000);
+
+% Scale source and recovered to [0,1].
